@@ -12,5 +12,6 @@ The aim is to link the data into MySQL and then display them as graphs by making
 <li>Using the documentation of Grafana http://docs.grafana.org/ install it.</li>
 <li>Make the connection of the data source connection in Grafana as documented. (Use MySQL 5.7 as the version 8.8 is not compatible with Grafana or if you are using the version 8.8 use legacy password encryption while initializing the database)</li>
 <li>Copy the json format of the dashboard from the "DashboardJSON.txt" and paste it into the JSON part of Grafana to get the dashboard I created and then make appropriate changes to get your own dashboard.</li>
-<h2>Note:</h2> For my dashboard to work do install the Plotly plugin in your dashboard
-<li> To see how my dashboard looks like you can view it in "Dashboard.jpeg"
+<li> To see how my dashboard looks like you can view it in "Dashboard.jpeg"</li>
+<h4>Note:</h4> For my dashboard to work do install the Plotly plugin in your dashboard
+
