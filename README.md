@@ -6,6 +6,6 @@ The aim is to link the data into MySQL and then display them as graphs by making
 <li>Linking MySQL with Grafana</li>
 <li>Displaying real-time graphs in Grafana</li>
 
-
-
+<h4>How to run:</h4>
+<li></li>
 
