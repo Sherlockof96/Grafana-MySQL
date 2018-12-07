@@ -1,0 +1,1014 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Trial 1",
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "panels": [
+    {
+      "datasource": "TestMYSQL",
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 0,
+        "y": 0
+      },
+      "id": 8,
+      "links": [],
+      "pconfig": {
+        "layout": {
+          "dragmode": "lasso",
+          "font": {
+            "family": "\"Open Sans\", Helvetica, Arial, sans-serif"
+          },
+          "hovermode": "closest",
+          "legend": {
+            "orientation": "h"
+          },
+          "showlegend": false,
+          "xaxis": {
+            "range": null,
+            "rangemode": "normal",
+            "showgrid": true,
+            "title": "Message Batch Size",
+            "type": "linear",
+            "zeroline": false
+          },
+          "yaxis": {
+            "range": null,
+            "rangemode": "normal",
+            "showgrid": true,
+            "title": "Message Batch Count",
+            "type": "linear",
+            "zeroline": false
+          },
+          "zaxis": {
+            "rangemode": "normal",
+            "showgrid": true,
+            "type": "linear",
+            "zeroline": false
+          }
+        },
+        "settings": {
+          "displayModeBar": false,
+          "type": "scatter"
+        },
+        "traces": [
+          {
+            "mapping": {
+              "color": "msgbcount",
+              "size": null,
+              "text": null,
+              "x": "msgbsize",
+              "y": "msgbcount",
+              "z": null
+            },
+            "name": "Trace 1",
+            "settings": {
+              "color_option": "ramp",
+              "line": {
+                "color": "#005f81",
+                "dash": "solid",
+                "shape": "linear",
+                "width": 6
+              },
+              "marker": {
+                "color": "#33B5E5",
+                "colorscale": "Portland",
+                "line": {
+                  "color": "#DDD",
+                  "width": 0
+                },
+                "showscale": false,
+                "size": 15,
+                "sizemin": 3,
+                "sizemode": "diameter",
+                "sizeref": 0.2,
+                "symbol": "circle"
+              }
+            },
+            "show": {
+              "line": true,
+              "lines": false,
+              "markers": true
+            }
+          }
+        ]
+      },
+      "targets": [
+        {
+          "alias": "",
+          "format": "time_series",
+          "hide": false,
+          "rawSql": "SELECT\n  UNIX_TIMESTAMP(epoc) as time_sec,\n  msgbcount as value,\n  'msgbcount' as metric\nFROM expodb\nORDER BY epoc ASC\n",
+          "refId": "B"
+        },
+        {
+          "alias": "",
+          "format": "time_series",
+          "hide": false,
+          "rawSql": "SELECT\n  UNIX_TIMESTAMP(epoc) as time_sec,\n  msgbsize as value,\n  'msgbsize' as metric\nFROM expodb\nORDER BY epoc ASC",
+          "refId": "A"
+        }
+      ],
+      "title": "Message Batch Size v/s Message Batch Count",
+      "type": "natel-plotly-panel",
+      "version": 1
+    },
+    {
+      "datasource": "TestMYSQL",
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 8,
+        "y": 0
+      },
+      "id": 10,
+      "links": [],
+      "pconfig": {
+        "layout": {
+          "dragmode": "lasso",
+          "font": {
+            "family": "\"Open Sans\", Helvetica, Arial, sans-serif"
+          },
+          "hovermode": "closest",
+          "legend": {
+            "orientation": "h"
+          },
+          "showlegend": false,
+          "xaxis": {
+            "range": null,
+            "rangemode": "normal",
+            "showgrid": true,
+            "title": "Message Queue Delay (Message Queue Count =2)",
+            "type": "linear",
+            "zeroline": false
+          },
+          "yaxis": {
+            "range": null,
+            "rangemode": "normal",
+            "showgrid": true,
+            "title": "",
+            "type": "linear",
+            "zeroline": false
+          },
+          "zaxis": {
+            "rangemode": "normal",
+            "showgrid": true,
+            "type": "linear",
+            "zeroline": false
+          }
+        },
+        "settings": {
+          "displayModeBar": false,
+          "type": "scatter"
+        },
+        "traces": [
+          {
+            "mapping": {
+              "color": "msgqdelay@time",
+              "size": null,
+              "text": null,
+              "x": "msgqdelay",
+              "y": "msgqdelay@time",
+              "z": null
+            },
+            "name": "Trace 2",
+            "settings": {
+              "color_option": "solid",
+              "line": {
+                "color": "#005f81",
+                "dash": "dot",
+                "shape": "linear",
+                "width": 2
+              },
+              "marker": {
+                "color": "#33B5E5",
+                "colorscale": "YIOrRd",
+                "line": {
+                  "color": "#DDD",
+                  "width": 0
+                },
+                "showscale": false,
+                "size": 6,
+                "sizemin": 3,
+                "sizemode": "diameter",
+                "sizeref": 0.2,
+                "symbol": "circle"
+              }
+            },
+            "show": {
+              "line": true,
+              "lines": true,
+              "markers": true
+            }
+          }
+        ]
+      },
+      "targets": [
+        {
+          "alias": "",
+          "format": "time_series",
+          "rawSql": "SELECT\n  UNIX_TIMESTAMP(epoc) as time_sec,\n  msgqdelay as value,\n  'msgqdelay' as metric\nFROM expodb\nORDER BY epoc ASC",
+          "refId": "A"
+        },
+        {
+          "alias": "",
+          "format": "time_series",
+          "rawSql": "SELECT\n  UNIX_TIMESTAMP(epoc) as time_sec,\n  msgqcount as value,\n  'msgqcount' as metric\nFROM expodb\nORDER BY epoc ASC",
+          "refId": "B"
+        }
+      ],
+      "title": "Message Queue Delay V/S Time",
+      "type": "natel-plotly-panel",
+      "version": 1
+    },
+    {
+      "datasource": "TestMYSQL",
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 16,
+        "y": 0
+      },
+      "id": 12,
+      "links": [],
+      "pconfig": {
+        "layout": {
+          "dragmode": "lasso",
+          "font": {
+            "family": "\"Open Sans\", Helvetica, Arial, sans-serif"
+          },
+          "hovermode": "closest",
+          "legend": {
+            "orientation": "h"
+          },
+          "showlegend": false,
+          "xaxis": {
+            "range": null,
+            "rangemode": "normal",
+            "showgrid": true,
+            "title": "Txn Time",
+            "type": "linear",
+            "zeroline": false
+          },
+          "yaxis": {
+            "range": null,
+            "rangemode": "normal",
+            "showgrid": true,
+            "title": "Message Queue Delay",
+            "type": "linear",
+            "zeroline": false
+          },
+          "zaxis": {
+            "rangemode": "normal",
+            "showgrid": true,
+            "type": "linear",
+            "zeroline": false
+          }
+        },
+        "settings": {
+          "displayModeBar": false,
+          "type": "scatter"
+        },
+        "traces": [
+          {
+            "mapping": {
+              "color": "msgqdelay",
+              "size": null,
+              "text": null,
+              "x": "truntime",
+              "y": "msgqdelay",
+              "z": null
+            },
+            "name": "Trace 3",
+            "settings": {
+              "color_option": "solid",
+              "line": {
+                "color": "#005f81",
+                "dash": "solid",
+                "shape": "linear",
+                "width": 1
+              },
+              "marker": {
+                "color": "#33B5E5",
+                "colorscale": "YIOrRd",
+                "line": {
+                  "color": "#DDD",
+                  "width": 0
+                },
+                "showscale": false,
+                "size": 15,
+                "sizemin": 3,
+                "sizemode": "diameter",
+                "sizeref": 0.2,
+                "symbol": "circle"
+              }
+            },
+            "show": {
+              "line": true,
+              "lines": false,
+              "markers": true
+            }
+          }
+        ]
+      },
+      "targets": [
+        {
+          "alias": "",
+          "format": "time_series",
+          "rawSql": "SELECT\n  UNIX_TIMESTAMP(epoc) as time_sec,\n  msgqdelay as value,\n  'msgqdelay' as metric\nFROM expodb\nORDER BY epoc ASC",
+          "refId": "A"
+        },
+        {
+          "alias": "",
+          "format": "time_series",
+          "rawSql": "SELECT\n  UNIX_TIMESTAMP(epoc) as time_sec,\n  truntime as value,\n  'truntime' as metric\nFROM expodb\nORDER BY epoc ASC",
+          "refId": "B"
+        }
+      ],
+      "title": "Message Queue Delay v/s Txn Time",
+      "type": "natel-plotly-panel",
+      "version": 1
+    },
+    {
+      "datasource": "TestMYSQL",
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 0,
+        "y": 6
+      },
+      "id": 16,
+      "links": [],
+      "pconfig": {
+        "layout": {
+          "dragmode": "lasso",
+          "font": {
+            "family": "\"Open Sans\", Helvetica, Arial, sans-serif"
+          },
+          "hovermode": "closest",
+          "legend": {
+            "orientation": "h"
+          },
+          "showlegend": false,
+          "xaxis": {
+            "range": null,
+            "rangemode": "normal",
+            "showgrid": true,
+            "title": "Message Send Time",
+            "type": "linear",
+            "zeroline": false
+          },
+          "yaxis": {
+            "range": null,
+            "rangemode": "normal",
+            "showgrid": true,
+            "title": "Message Sent Count",
+            "type": "linear",
+            "zeroline": false
+          },
+          "zaxis": {
+            "rangemode": "normal",
+            "showgrid": true,
+            "type": "linear",
+            "zeroline": false
+          }
+        },
+        "settings": {
+          "displayModeBar": false,
+          "type": "scatter"
+        },
+        "traces": [
+          {
+            "mapping": {
+              "color": "A-series",
+              "size": null,
+              "text": null,
+              "x": "msgstime",
+              "y": "msgscount",
+              "z": null
+            },
+            "name": "Trace 5",
+            "settings": {
+              "color_option": "ramp",
+              "line": {
+                "color": "#005f81",
+                "dash": "solid",
+                "shape": "linear",
+                "width": 6
+              },
+              "marker": {
+                "color": "#33B5E5",
+                "colorscale": "YIOrRd",
+                "line": {
+                  "color": "#DDD",
+                  "width": 0
+                },
+                "showscale": true,
+                "size": 15,
+                "sizemin": 3,
+                "sizemode": "diameter",
+                "sizeref": 0.2,
+                "symbol": "circle"
+              }
+            },
+            "show": {
+              "line": true,
+              "lines": false,
+              "markers": false
+            }
+          }
+        ]
+      },
+      "targets": [
+        {
+          "alias": "",
+          "format": "time_series",
+          "rawSql": "SELECT\n  UNIX_TIMESTAMP(epoc) as time_sec,\n  msgstime as value,\n  'msgstime' as metric\nFROM expodb\nORDER BY epoc ASC",
+          "refId": "A"
+        },
+        {
+          "alias": "",
+          "format": "time_series",
+          "rawSql": "SELECT\n  UNIX_TIMESTAMP(epoc) as time_sec,\n  msgscount as value,\n  'msgscount' as metric\nFROM expodb\nORDER BY epoc ASC",
+          "refId": "B"
+        }
+      ],
+      "title": "Message Send Time v/s Message Sent Count",
+      "type": "natel-plotly-panel",
+      "version": 1
+    },
+    {
+      "datasource": "TestMYSQL",
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 8,
+        "y": 6
+      },
+      "id": 14,
+      "links": [],
+      "pconfig": {
+        "layout": {
+          "dragmode": "lasso",
+          "font": {
+            "family": "\"Open Sans\", Helvetica, Arial, sans-serif"
+          },
+          "hovermode": "closest",
+          "legend": {
+            "orientation": "h"
+          },
+          "showlegend": false,
+          "xaxis": {
+            "range": null,
+            "rangemode": "normal",
+            "showgrid": true,
+            "title": "Message Recv Time",
+            "type": "linear",
+            "zeroline": false
+          },
+          "yaxis": {
+            "range": null,
+            "rangemode": "normal",
+            "showgrid": true,
+            "title": "Message Recv Count",
+            "type": "linear",
+            "zeroline": false
+          },
+          "zaxis": {
+            "rangemode": "normal",
+            "showgrid": true,
+            "type": "linear",
+            "zeroline": false
+          }
+        },
+        "settings": {
+          "displayModeBar": false,
+          "type": "scatter"
+        },
+        "traces": [
+          {
+            "mapping": {
+              "color": "A-series",
+              "size": null,
+              "text": null,
+              "x": "msgrtime",
+              "y": "msgrcount",
+              "z": null
+            },
+            "name": "Trace 4",
+            "settings": {
+              "color_option": "ramp",
+              "line": {
+                "color": "#005f81",
+                "dash": "solid",
+                "shape": "linear",
+                "width": 6
+              },
+              "marker": {
+                "color": "#33B5E5",
+                "colorscale": "YIOrRd",
+                "line": {
+                  "color": "#DDD",
+                  "width": 0
+                },
+                "showscale": true,
+                "size": 15,
+                "sizemin": 3,
+                "sizemode": "diameter",
+                "sizeref": 0.2,
+                "symbol": "circle"
+              }
+            },
+            "show": {
+              "line": true,
+              "markers": false
+            }
+          }
+        ]
+      },
+      "targets": [
+        {
+          "alias": "",
+          "format": "time_series",
+          "rawSql": "SELECT\n  UNIX_TIMESTAMP(epoc) as time_sec,\n  msgrtime as value,\n  'msgrtime' as metric\nFROM expodb\nORDER BY epoc ASC\n",
+          "refId": "A"
+        },
+        {
+          "alias": "",
+          "format": "time_series",
+          "hide": false,
+          "rawSql": "SELECT\n  UNIX_TIMESTAMP(epoc) as time_sec,\n  msgrcount as value,\n  'msgrcount' as metric\nFROM expodb\nORDER BY epoc ASC",
+          "refId": "B"
+        }
+      ],
+      "title": "Message Recv Time v/s Message Recv Count",
+      "type": "natel-plotly-panel",
+      "version": 1
+    },
+    {
+      "datasource": "TestMYSQL",
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 16,
+        "y": 6
+      },
+      "id": 18,
+      "links": [],
+      "pconfig": {
+        "layout": {
+          "dragmode": "lasso",
+          "font": {
+            "family": "\"Open Sans\", Helvetica, Arial, sans-serif"
+          },
+          "hovermode": "closest",
+          "legend": {
+            "orientation": "h"
+          },
+          "showlegend": false,
+          "xaxis": {
+            "range": null,
+            "rangemode": "normal",
+            "showgrid": true,
+            "title": "Worker Process Time (Worker Process Count =5)",
+            "type": "linear",
+            "zeroline": false
+          },
+          "yaxis": {
+            "range": null,
+            "rangemode": "normal",
+            "showgrid": true,
+            "title": "",
+            "type": "linear",
+            "zeroline": false
+          },
+          "zaxis": {
+            "rangemode": "normal",
+            "showgrid": true,
+            "type": "linear",
+            "zeroline": false
+          }
+        },
+        "settings": {
+          "displayModeBar": false,
+          "type": "scatter"
+        },
+        "traces": [
+          {
+            "mapping": {
+              "color": "wrkptime@time",
+              "size": null,
+              "text": null,
+              "x": "wrkptime",
+              "y": "wrkptime@time",
+              "z": null
+            },
+            "name": "Trace 6",
+            "settings": {
+              "color_option": "ramp",
+              "line": {
+                "color": "#005f81",
+                "dash": "solid",
+                "shape": "linear",
+                "width": 1
+              },
+              "marker": {
+                "color": "#33B5E5",
+                "colorscale": "YIOrRd",
+                "line": {
+                  "color": "#DDD",
+                  "width": 0
+                },
+                "showscale": false,
+                "size": 6,
+                "sizemin": 3,
+                "sizemode": "diameter",
+                "sizeref": 0.2,
+                "symbol": "circle"
+              }
+            },
+            "show": {
+              "line": true,
+              "lines": true,
+              "markers": true
+            }
+          }
+        ]
+      },
+      "targets": [
+        {
+          "alias": "",
+          "format": "time_series",
+          "rawSql": "SELECT\n  UNIX_TIMESTAMP(epoc) as time_sec,\n  wrkptime as value,\n  'wrkptime' as metric\nFROM expodb\nORDER BY epoc ASC\n",
+          "refId": "A"
+        },
+        {
+          "alias": "",
+          "format": "time_series",
+          "rawSql": "SELECT\n  UNIX_TIMESTAMP(epoc) as time_sec,\n  wrkpcount as value,\n  'wrkpcount' as metric\nFROM expodb\nORDER BY epoc ASC\n",
+          "refId": "B"
+        }
+      ],
+      "title": "Worker Process Time v/s Time",
+      "type": "natel-plotly-panel",
+      "version": 1
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "TestMYSQL",
+      "fill": 1,
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 0,
+        "y": 12
+      },
+      "id": 4,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "max": false,
+        "min": true,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "format": "time_series",
+          "hide": false,
+          "rawSql": "SELECT\n  UNIX_TIMESTAMP(epoc) as time_sec,\n  tcount as value,\n  'tcount' as metric\nFROM expodb\nORDER BY epoc ASC\n",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Transaction Count",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "Transaction Count",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "TestMYSQL",
+      "fill": 1,
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 8,
+        "y": 12
+      },
+      "id": 6,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "format": "time_series",
+          "hide": false,
+          "rawSql": "SELECT\n  UNIX_TIMESTAMP(epoc) as time_sec,\n  msgscount as value,\n  'msgscount' as metric\nFROM expodb\nORDER BY epoc ASC\n",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Message Send Count",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "Message Send Count",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "TestMYSQL",
+      "fill": 1,
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 16,
+        "y": 12
+      },
+      "id": 20,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "format": "time_series",
+          "rawSql": "SELECT\n  UNIX_TIMESTAMP(epoc) as time_sec,\n  msgrcount as value,\n  'msgrcount' as metric\nFROM expodb\nORDER BY epoc ASC\n",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Message Recv Count",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "Message Recv Count",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "columns": [],
+      "datasource": "TestMYSQL",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 18
+      },
+      "id": 2,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": null,
+        "desc": false
+      },
+      "styles": [
+        {
+          "alias": "Time",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Time",
+          "type": "date"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "alias": "",
+          "format": "table",
+          "hide": false,
+          "rawSql": "SELECT * from expodb; ",
+          "refId": "A"
+        }
+      ],
+      "title": "Whole Table",
+      "transform": "table",
+      "type": "table"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 16,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "2018-12-07T04:04:10.166Z",
+    "to": "2018-12-07T05:06:25.586Z"
+  },
+  "timepicker": {
+    "hidden": false,
+    "refresh_intervals": [
+      "10s"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "ExpoDB",
+  "uid": "9TtcqWPik",
+  "version": 8
+}
